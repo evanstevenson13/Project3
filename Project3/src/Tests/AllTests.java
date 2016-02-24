@@ -9,6 +9,7 @@ import Tests.Actions.*;
 import Tests.Verifiers.*;
 
 
+// Run all the tests in the program
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     InterimResultTest.class,

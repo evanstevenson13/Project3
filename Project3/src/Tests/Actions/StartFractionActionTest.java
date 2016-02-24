@@ -1,4 +1,4 @@
-package Tests.Verifiers.Actions;
+package Tests.Actions;
 
 import static org.junit.Assert.*;
 

@@ -47,19 +47,19 @@ public class ConvertingMachine
 
 	public double parse(String text)
 	{
-		double v=0;
-		int signIndicator = 1;
-		double precision=0.1;
+//		double v=0;
+//		int signIndicator = 1;
+//		double precision=0.1;
 		Edge currentEdge=new Edge(State.START, null, null, null);
+		InterimResult IR = new InterimResult(0.0,1,0.0);
 		
 		for(int StringPosition=0; StringPosition<text.length(); StringPosition++){
 			char currentCharacter = text.charAt(StringPosition);
 			currentEdge=searchForEdge(currentEdge.currentState,currentCharacter);
-
+			IR=currentEdge.action.execute(IR, currentCharacter);
 		}
 		return -1.123;
 	}
-	
 
 	protected Edge searchForEdge(State currentState, char currentCharacter)
 	{

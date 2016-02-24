@@ -7,8 +7,10 @@ public class ContinuingIntegerAction implements Action {
 
 	@Override
 	public InterimResult execute(InterimResult x, char c) {
-		// TODO Auto-generated method stub
-		return null;
+		double oldValue = x.getV();
+		double newValue = (10 * oldValue) + (c-'0');
+		x.setV(newValue);
+		return x;
 	}
 
 }

@@ -1,10 +1,16 @@
 package Code;
 
+import Actions.ContinuingFactionAction;
+import Actions.ContinuingIntegerAction;
 import Actions.NegateAction;
+import Actions.NoAction;
+import Actions.StartFraction;
 import Actions.ValueIsDigitAction;
 import Verifiers.DigitInputVerifier;
 import Verifiers.InputVerifier;
 import Verifiers.MinusInputVerifier;
+import Verifiers.PeriodInputVerifier;
+import Verifiers.PlusInputVerifier;
 
 
 /**
@@ -26,16 +32,16 @@ public class ConvertingMachine
 					new ValueIsDigitAction(), State.INTEGER),
 			new Edge(State.START, new MinusInputVerifier(), new NegateAction(),
 					State.INTEGER),
-//			new Edge(State.START, new PlusInputVerifier(), new NoAction(),
-//					State.INTEGER),
-//			new Edge(State.START, new PeriodInputVerifier(),
-//					new StartFraction(), State.DECIMAL),
-//			new Edge(State.INTEGER, new DigitInputVerifier(),
-//					new ContinuingIntegerAction(), State.INTEGER),
-//			new Edge(State.INTEGER, new PeriodInputVerifier(),
-//					new StartFraction(), State.DECIMAL),
-//			new Edge(State.DECIMAL, new DigitInputVerifier(),
-//					new ContinuingFactionAction(), State.DECIMAL)
+			new Edge(State.START, new PlusInputVerifier(), new NoAction(),
+					State.INTEGER),
+			new Edge(State.START, new PeriodInputVerifier(),
+					new StartFraction(), State.DECIMAL),
+			new Edge(State.INTEGER, new DigitInputVerifier(),
+					new ContinuingIntegerAction(), State.INTEGER),
+			new Edge(State.INTEGER, new PeriodInputVerifier(),
+					new StartFraction(), State.DECIMAL),
+			new Edge(State.DECIMAL, new DigitInputVerifier(),
+					new ContinuingFactionAction(), State.DECIMAL)
 
 	};
 
@@ -53,6 +59,7 @@ public class ConvertingMachine
 		}
 		return -1.123;
 	}
+	
 
 	protected Edge searchForEdge(State currentState, char currentCharacter)
 	{

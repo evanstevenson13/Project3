@@ -152,4 +152,31 @@ public class ConvertingMachineTest
 		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.nextState);
 	}
 	
+	
+	@Test
+	public void testSearchForEdgeFromIntergerToInteger() {
+		ConvertingMachine CM = new ConvertingMachine();
+		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.INTEGER,'1');
+		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.currentState);
+		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.nextState);
+	}
+	
+	
+	@Test
+	public void testSearchForEdgeFromIntergerToDecimal() {
+		ConvertingMachine CM = new ConvertingMachine();
+		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.INTEGER,'.');
+		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.currentState);
+		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.nextState);
+	}
+	
+	
+	@Test
+	public void testSearchForEdgeFromDecimalToDecimal() {
+		ConvertingMachine CM = new ConvertingMachine();
+		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.DECIMAL,'1');
+		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.currentState);
+		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.nextState);
+	}
+	
 }

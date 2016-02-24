@@ -1,29 +1,25 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import Verifiers.MinusInputVerifier;
 
-import Verifiers.DigitInputVerifier;
 
 public class MinusInputVerifierTest {
 
-	public DigitInputVerifier DIV=new DigitInputVerifier();
+	public MinusInputVerifier DIV=new MinusInputVerifier();
 	
 	@Test
 	public void CharInRange(){
-		for(int ValueToTest=0;ValueToTest<10;ValueToTest++){
-			assertTrue(DIV.meetsCriteria((char)(ValueToTest+48)));
-		}
-		
+		assertTrue(DIV.meetsCriteria('-'));		
 	}
 	
 	
 	@Test
 	public void CharOutOfRange(){
-		assertFalse(DIV.meetsCriteria('.'));
-		assertFalse(DIV.meetsCriteria('/'));
-		assertFalse(DIV.meetsCriteria(':'));
+		assertFalse(DIV.meetsCriteria('g'));
+		assertFalse(DIV.meetsCriteria('1'));
+		assertFalse(DIV.meetsCriteria('5'));
 	}
 	
 	

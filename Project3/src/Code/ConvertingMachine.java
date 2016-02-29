@@ -47,25 +47,19 @@ public class ConvertingMachine
 	//TODO: need comments
 	public double parse(String text)
 	{		
-		Edge currentEdge=new Edge(null, null, null, null);
-		State currentState = State.START;
+		State currentState = State.START;	//the current state starts at State.START
 		
-		InterimResult IR = new InterimResult(0.0,1,0.0);
+		InterimResult IR = new InterimResult(0.0,1,0.0);	//create initial result p = 0, s = 1, v = 0 
 		
 		for(int StringPosition=0; StringPosition<text.length(); StringPosition++){
-			char currentCharacter = text.charAt(StringPosition);
-			currentEdge=searchForEdge(currentState,currentCharacter);
+			char currentCharacter = text.charAt(StringPosition);		//current character at position of loop
+			Edge currentEdge = searchForEdge(currentState,currentCharacter);	//update 
 			
-			if(currentEdge.nextState == null)
-			{
-				throw new NumberFormatException();
-			}
-			
-			IR=currentEdge.action.execute(IR, currentCharacter);
-			currentState = currentEdge.nextState;
+			IR=currentEdge.action.execute(IR, currentCharacter);		//the interim result is updated by the action of currentEdge
+			currentState = currentEdge.nextState;		//update the currentState to the nextState of the currentEdge
 		}
 	
-		return IR.getV()*IR.getS();		//TODO different end
+		return IR.getV()*IR.getS();		//return the sign times the value for final result
 	}
 
 	protected Edge searchForEdge(State currentState, char currentCharacter)
@@ -77,7 +71,8 @@ public class ConvertingMachine
 				}
 			}
 		}
-		return new Edge(null,null,null,null);
+		
+		throw new NumberFormatException();
 	}
 
 	protected class Edge

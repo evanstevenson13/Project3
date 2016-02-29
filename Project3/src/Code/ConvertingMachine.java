@@ -44,6 +44,7 @@ public class ConvertingMachine
 					new ContinuingFactionAction(), State.DECIMAL)
 	};
 
+	//TODO: need comments
 	public double parse(String text)
 	{		
 		Edge currentEdge=new Edge(null, null, null, null);

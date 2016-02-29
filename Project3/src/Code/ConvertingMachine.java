@@ -42,23 +42,29 @@ public class ConvertingMachine
 					new StartFraction(), State.DECIMAL),
 			new Edge(State.DECIMAL, new DigitInputVerifier(),
 					new ContinuingFactionAction(), State.DECIMAL)
-
 	};
 
 	public double parse(String text)
-	{
-//		double v=0;
-//		int signIndicator = 1;
-//		double precision=0.1;
-		Edge currentEdge=new Edge(State.START, null, null, null);
+	{		
+		Edge currentEdge=new Edge(null, null, null, null);
+		State currentState = State.START;
+		
 		InterimResult IR = new InterimResult(0.0,1,0.0);
 		
 		for(int StringPosition=0; StringPosition<text.length(); StringPosition++){
 			char currentCharacter = text.charAt(StringPosition);
-			currentEdge=searchForEdge(currentEdge.currentState,currentCharacter);
+			currentEdge=searchForEdge(currentState,currentCharacter);
+			
+			if(currentEdge.nextState == null)
+			{
+				throw new NumberFormatException();
+			}
+			
 			IR=currentEdge.action.execute(IR, currentCharacter);
+			currentState = currentEdge.nextState;
 		}
-		return -1.123;
+	
+		return IR.getV()*IR.getS();		//TODO different end
 	}
 
 	protected Edge searchForEdge(State currentState, char currentCharacter)
@@ -71,7 +77,6 @@ public class ConvertingMachine
 			}
 		}
 		return new Edge(null,null,null,null);
-//		return currentEdge;
 	}
 
 	protected class Edge
@@ -94,9 +99,6 @@ public class ConvertingMachine
 			return currentState;
 		}
 		
-//		protected boolean IsVerified(char checkCharacter){
-//			return inputVerifier.meetsCriteria(checkCharacter);
-//		}
 	}
 
 	protected enum State

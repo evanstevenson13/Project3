@@ -6,8 +6,8 @@ import Code.InterimResult;
 public class ValueIsDigitAction implements Action {
 
 	@Override
+	//TODO: change x to ir everywhere
 	public InterimResult execute(InterimResult x, char c){
-//		InterimResult IR = new InterimResult(x);
 		x.setV((c-'0'));
 		return x;
 	}

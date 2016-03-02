@@ -1,30 +1,38 @@
 
 
-InterimResult *ValueIsDigitAction(InterimResult *ir, char c){
-	return ir;
+void ValueIsDigitAction(InterimResult *ir, char c){
+	ir->v = (c-'0');
 }
 
 
-InterimResult *NegateAction(InterimResult *ir, char c){
-	return ir;
+void NegateAction(InterimResult *ir, char c){
+	ir->s = -1;
 }
 
 
-InterimResult *NoAction(InterimResult *ir, char c){
-	return ir;
+void NoAction(InterimResult *ir, char c){
+	ir->v = 0.0;
+	ir->s = 0;
+	ir->p = 0.0;
 }
 
 
-InterimResult *StartFractionAction(InterimResult *ir, char c){
-	return ir;
+void StringEndAction(InterimResult *ir, char c){
+	ir->v *= ir->s;
 }
 
 
-InterimResult *ContinuingIntegerAction(InterimResult *ir, char c){
-	return ir;
+void StartFractionAction(InterimResult *ir, char c){
+	ir->p = (.1);
 }
 
 
-InterimResult *ContinuingFactionAction(InterimResult *ir, char c){
-	return ir;
+void ContinuingIntegerAction(InterimResult *ir, char c){
+	ir->v = (ir->v*10) + (c-'0');
+}
+
+
+void ContinuingFactionAction(InterimResult *ir, char c){
+	ir->v += ir->p * (c-'0');
+	ir->p = (ir->p/10);
 }

@@ -137,11 +137,12 @@ void SetEdges(){
 	edges[12].nextState = End;
 }
 
+	// Doesn't always work right but you can look at what it prints to see if its correct
 void Test(char inString[], double expected){
 	if(Parse(inString) == expected){
-		printf("%s is equal to the number %g\n\n", Parse(inString));
+		printf("Expected %g: %s is equal to the number %g\n\n", expected, inString, Parse(inString));
 	}else{
-		printf("%s is NOT equal to the number %\n\n", Parse(inString));
+		printf("Expected %g: %s is NOT equal to the number %g\n\n", expected, inString, Parse(inString));
 	}
 }
 
@@ -151,15 +152,12 @@ void main(){
 
 	SetEdges();
 
-//	char input[] = "-12.0231";
-//	printf("Final Result: %g", Parse(input));
-
 	Test("-12.0231", -12.0231);
 	Test("1", 1);
 	Test("a", 0);
 	Test("123a", 0);
 	Test("-23", -23);
-	Test(".054", .054);
+	Test(".054", 0.054);
 
 	printf("\n\n\n\n");
 }

@@ -49,17 +49,17 @@ public class ConvertingMachine
 	{		
 		State currentState = State.START;	//the current state starts at State.START
 		
-		InterimResult IR = new InterimResult(0.0,1,0.0);	//create initial result p = 0, s = 1, v = 0 
+		InterimResult ir = new InterimResult(0.0,1,0.0);	//create initial result p = 0, s = 1, v = 0 
 		
 		for(int StringPosition=0; StringPosition<text.length(); StringPosition++){
 			char currentCharacter = text.charAt(StringPosition);		//current character at position of loop
 			Edge currentEdge = searchForEdge(currentState,currentCharacter);	//update 
 			
-			IR=currentEdge.action.execute(IR, currentCharacter);		//the interim result is updated by the action of currentEdge
+			ir=currentEdge.action.execute(ir, currentCharacter);		//the interim result is updated by the action of currentEdge
 			currentState = currentEdge.nextState;		//update the currentState to the nextState of the currentEdge
 		}
 	
-		return IR.getV()*IR.getS();		//return the sign times the value for final result
+		return ir.getV()*ir.getS();		//return the sign times the value for final result
 	}
 
 	protected Edge searchForEdge(State currentState, char currentCharacter)

@@ -1,5 +1,6 @@
 
 
+	// Checks the input is between 0-9
 bool DigitInputVerifier(char c){
 	if(c >= 48 && c<=57){
 		return True;
@@ -7,7 +8,7 @@ bool DigitInputVerifier(char c){
 	return False;
 }
 
-
+	// Checks the input is a minus
 bool MinusInputVerifier(char c){
 	if(c == 45){
 		return True;
@@ -15,7 +16,7 @@ bool MinusInputVerifier(char c){
 	return False;
 }
 
-
+	// Checks the input is a plus
 bool PlusInputVerifier(char c){
 	if(c == 43){
 		return True;
@@ -23,7 +24,7 @@ bool PlusInputVerifier(char c){
 	return False;
 }
 
-
+	// Checks the input is a period
 bool PeriodInputVerifier(char c){
 	if(c == 46){
 		return True;
@@ -31,7 +32,7 @@ bool PeriodInputVerifier(char c){
 	return False;
 }
 
-
+	// Checks the input is null terminator
 bool StringEndInputVerifier(char c){
 	if(c == 0){
 		return True;

@@ -7,9 +7,11 @@ import Code.InterimResult;
 
 public class NegateActionTest {
 
+	/**
+	 * S should become negative 1 when - is sent to action
+	 */
 	@Test
-	//TODO: Fix name
-	public void ResultIsDifferent() {
+	public void TurnSNegative() {
 		NegateAction NegateA =  new NegateAction();
 		InterimResult IRBefore = new InterimResult(0.0,1,0.0);
 		InterimResult IRAfter = NegateA.execute(IRBefore, '-');

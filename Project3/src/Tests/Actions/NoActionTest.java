@@ -9,9 +9,11 @@ import Code.InterimResult;
 
 public class NoActionTest {
 
+	/**
+	 * The result should not change when sent to the action
+	 */
 	@Test
-	//TODO: Fix name
-	public void ResultIsDifferent() {
+	public void NoChange() {
 		NoAction NoA =  new NoAction();
 		InterimResult IRBefore = new InterimResult(0.0,1,0.0);
 		InterimResult IRAfter = NoA.execute(IRBefore, '+');

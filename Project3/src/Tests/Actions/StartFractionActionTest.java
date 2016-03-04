@@ -7,16 +7,18 @@ import org.junit.Test;
 import Actions.StartFraction;
 import Code.InterimResult;
 
-public class StartFractionActionTest {
+public class StartFractionActionTest{
 
+	/**
+	 * Period is sent to the action then p should be changed to .1
+	 */
 	@Test
-	//TODO: Fix name
-	public void ResultIsDifferent() {
+	public void StartDecimalTest(){
 		StartFraction SF =  new StartFraction();
-		InterimResult IRBefore = new InterimResult(0.0,1,0.0);
+		InterimResult IRBefore = new InterimResult(0.0, 1, 0.0);
 		InterimResult IRAfter = SF.execute(IRBefore, '.');
 		
-		assertNotEquals(IRBefore, IRAfter);
+		assertEquals(.1, IRAfter.getP(), .1);
 	}
 
 }

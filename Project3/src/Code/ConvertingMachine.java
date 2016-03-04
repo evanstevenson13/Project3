@@ -23,11 +23,13 @@ import Verifiers.PlusInputVerifier;
  *
  */
 
-public class ConvertingMachine
-{
-
-	private final Edge[] machine =
-	{
+public class ConvertingMachine{
+	
+	/**
+	 * All the possible edge
+	 * each edge contains a current state, verifier, action, and next state
+	 */
+	private final Edge[] machine = {
 			new Edge(State.START, new DigitInputVerifier(),
 					new ValueIsDigitAction(), State.INTEGER),
 			new Edge(State.START, new MinusInputVerifier(), new NegateAction(),
@@ -44,9 +46,15 @@ public class ConvertingMachine
 					new ContinuingFactionAction(), State.DECIMAL)
 	};
 
-	//TODO: need comments
-	public double parse(String text)
-	{		
+
+	/**
+	 * 
+	 * @param text string to be converted into a double
+	 * @return the double the was extracted from the strings
+	 * Will loop through each character and create a final number result based of each character in the string
+	 * Invalid characters result in a exception being thrown
+	 */
+	public double parse(String text){		
 		State currentState = State.START;	//the current state starts at State.START
 		
 		InterimResult ir = new InterimResult(0.0,1,0.0);	//create initial result p = 0, s = 1, v = 0 
@@ -62,8 +70,15 @@ public class ConvertingMachine
 		return ir.getV()*ir.getS();		//return the sign times the value for final result
 	}
 
-	protected Edge searchForEdge(State currentState, char currentCharacter)
-	{
+	
+	/**
+	 * 
+	 * @param currentState State it is currently on
+	 * @param currentCharacter The character it is currently trying to perform an action to
+	 * @return An edge that matches the current state and accepts the current character
+	 * 				Throws exception if no state matching edge is found 
+	 */
+	protected Edge searchForEdge(State currentState, char currentCharacter){
 		for(Edge edgeToCheck : machine){
 			if(currentState==edgeToCheck.getCurrentState()){
 				if(edgeToCheck.inputVerifier.meetsCriteria(currentCharacter)){
@@ -75,16 +90,17 @@ public class ConvertingMachine
 		throw new NumberFormatException();
 	}
 
-	protected class Edge
-	{
-		State currentState;
-		InputVerifier inputVerifier;
-		Action action;
-		State nextState;
+	
+	/**
+	 * Container for a edge. Has everything that the edge needs, current state, verifier, action, next state
+	 */
+	protected class Edge{
+		State currentState;	// State that it is currently at
+		InputVerifier inputVerifier; // Checks the input to see if it applies to this state
+		Action action; // Performs calculation in the input if the state is selected
+		State nextState; // Give the next state
 
-		public Edge(State currentState, InputVerifier inputVerifier,
-				Action action, State nextState)
-		{
+		public Edge(State currentState, InputVerifier inputVerifier, Action action, State nextState){
 			this.currentState = currentState;
 			this.inputVerifier = inputVerifier;
 			this.action = action;
@@ -97,6 +113,10 @@ public class ConvertingMachine
 		
 	}
 
+	
+	/**
+	 * Holds all the possible states
+	 */
 	protected enum State
 	{
 		START, INTEGER, DECIMAL, END

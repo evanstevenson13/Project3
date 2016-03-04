@@ -23,7 +23,7 @@ import Tests.Verifiers.*;
 //    Verifiers
     DigitInputVerifierTest.class,
     MinusInputVerifierTest.class,
-    PeriodInputVerifierTest.class,
     PlusInputVerifierTest.class,
+    PeriodInputVerifierTest.class,
 })
 public class AllTests{}

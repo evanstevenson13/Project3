@@ -115,35 +115,41 @@ public class ConvertingMachineTest
 	
 	
 	/**
-	 * 	Make sure machine goes to correct edge
+	 * 	Make sure machine goes from Start to Integer when a number is entered
 	 */
 	@Test
-	public void testSearchForEdgeFromStartToInteger() {
+	public void testSearchForEdgeFromStartToInteger(){
 		ConvertingMachine CM = new ConvertingMachine();
 		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.START,'1');
 		assertEquals(ConvertingMachine.State.START, NewEdge.currentState);
 		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Start to Integer when a plus is entered
+	 */
 	@Test
-	public void testSearchForEdgeFromStartToPlus() {
+	public void testSearchForEdgeFromStartToPlus(){
 		ConvertingMachine CM = new ConvertingMachine();
 		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.START,'+');
 		assertEquals(ConvertingMachine.State.START, NewEdge.currentState);
 		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Start to Integer when a minus is entered
+	 */
 	@Test
-	public void testSearchForEdgeFromStartToMinus() {
+	public void testSearchForEdgeFromStartToMinus(){
 		ConvertingMachine CM = new ConvertingMachine();
 		ConvertingMachine.Edge NewEdge=CM.searchForEdge(ConvertingMachine.State.START,'-');
 		assertEquals(ConvertingMachine.State.START, NewEdge.currentState);
 		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Start to Decimal when a period is entered
+	 */
 	@Test
 	public void testSearchForEdgeFromStartToDecimal() {
 		ConvertingMachine CM = new ConvertingMachine();
@@ -152,7 +158,9 @@ public class ConvertingMachineTest
 		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Integer to Integer when a number is entered
+	 */
 	@Test
 	public void testSearchForEdgeFromIntergerToInteger() {
 		ConvertingMachine CM = new ConvertingMachine();
@@ -161,7 +169,9 @@ public class ConvertingMachineTest
 		assertEquals(ConvertingMachine.State.INTEGER, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Integer to Decimal when a period is entered
+	 */
 	@Test
 	public void testSearchForEdgeFromIntergerToDecimal() {
 		ConvertingMachine CM = new ConvertingMachine();
@@ -170,7 +180,9 @@ public class ConvertingMachineTest
 		assertEquals(ConvertingMachine.State.DECIMAL, NewEdge.nextState);
 	}
 	
-	
+	/**
+	 * Make sure machine goes from Decimal to Decimal when a period is entered and then number are entered after that
+	 */
 	@Test
 	public void testSearchForEdgeFromDecimalToDecimal() {
 		ConvertingMachine CM = new ConvertingMachine();
